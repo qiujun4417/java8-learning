@@ -1,7 +1,10 @@
 package com.nick.java8.learning.configuration;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
@@ -15,9 +18,14 @@ import javax.sql.DataSource;
 public class ApplicationStartup {
 
     @Bean
-    public DataSource dataSource(){
+    @Profile("test")
+    public DataSource testDataSource(){
         return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2)
                 .build();
+    }
+
+    public static void main(String[] args){
+        SpringApplication.run(ApplicationStartup.class, args);
     }
 
 }
