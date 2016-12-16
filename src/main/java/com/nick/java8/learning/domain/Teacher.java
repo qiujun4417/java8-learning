@@ -1,13 +1,10 @@
-package com.nick.java8.learning.model;
+package com.nick.java8.learning.domain;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by nick on 2016/12/6.
@@ -16,13 +13,16 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "tb_teacher")
-public class Teacher extends AbstractPersistable<String> {
+public class Teacher implements Serializable {
 
     @Id
     @GeneratedValue(generator = "teacherIdGenerator")
     @GenericGenerator(name="teacherIdGenerator",strategy = "uuid")
     private String id;
+    @Column(name = "teacher_name")
     private String teacherName;
+    @Column(name = "class_name")
     private String className;
+    @Column(name = "gender")
     private String gender;
 }
