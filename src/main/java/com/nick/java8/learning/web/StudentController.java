@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -18,12 +20,11 @@ public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
 
-    @GetMapping("/api")
+    @PostMapping("/api")
     @ResponseBody
     @Transactional
-    public String addStudent(){
-        Student student = new Student();
+    public String addStudent(@RequestBody Student student){
         studentRepository.save(student);
-        return "";
+        return "ok";
     }
 }
