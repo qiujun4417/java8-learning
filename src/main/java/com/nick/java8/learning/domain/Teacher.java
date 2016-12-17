@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by nick on 2016/12/6.
@@ -25,4 +26,8 @@ public class Teacher implements Serializable {
     private String className;
     @Column(name = "gender")
     private String gender;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    private List<Student> students;
 }
