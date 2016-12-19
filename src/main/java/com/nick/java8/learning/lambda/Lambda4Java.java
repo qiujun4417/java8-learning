@@ -7,7 +7,6 @@ package com.nick.java8.learning.lambda;
 public class Lambda4Java {
 
     public static void main(String[] args){
-        new Thread(()->{}).start();
+        new Thread(()->System.out.println("hello world")).start();
     }
-
 }

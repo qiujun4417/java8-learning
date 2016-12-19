@@ -26,8 +26,8 @@ public class Teacher implements Serializable {
     private String className;
     @Column(name = "gender")
     private String gender;
-
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "teacher_id")
     private List<Student> students;
+
 }
