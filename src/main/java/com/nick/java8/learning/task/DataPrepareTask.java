@@ -5,15 +5,15 @@ import com.nick.java8.learning.domain.Teacher;
 import com.nick.java8.learning.repository.StudentRepository;
 import com.nick.java8.learning.repository.TeacherRepository;
 import com.nick.java8.learning.utils.IDGen;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 /**
  * Created by nick on 2016/12/19.
@@ -27,6 +27,8 @@ public class DataPrepareTask implements InitializingBean{
 
     @Autowired
     private TeacherRepository teacherRepository;
+
+    private static Logger logger = LoggerFactory.getLogger(DataPrepareTask.class);
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -50,12 +52,15 @@ public class DataPrepareTask implements InitializingBean{
         for(int i=0; i<10000; i++){
             Teacher teacher = teacherList.get(new Random().nextInt(100));
             Student student = new Student();
-            student.setId(IDGen.uuid());
             student.setClassName(teacher.getClassName());
             student.setStudentName("学生" + i);
             student.setTeacherId(teacher.getId());
+            student.setAge((int)(Math.random()*5) + 20);
             students.add(student);
         }
         studentRepository.save(students);
+        teacherList = teacherRepository.findAll();
+        students = teacherList.get(10).getStudents();
+        logger.info("the students size is : " + students.size());
     }
 }
