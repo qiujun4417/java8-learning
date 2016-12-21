@@ -9,6 +9,7 @@ import com.nick.java8.learning.repository.StudentRepository;
 import com.nick.java8.learning.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Random;
@@ -39,25 +40,25 @@ public class EducationServices {
     }
 
     private Course createCourse(String courseName, int period){
-        CourseFactory factory = (a, b)->{
-            Supplier<Course> supplier = Course::new;
-            return supplier.get();
-        };
+        CourseFactory factory = (a, b)-> new Course(a,b);
         return factory.buildCourse(courseName, period);
     }
 
+    @Transactional
     public Student createStu(String name, String className, String teacherId, int age){
         Student student = createStudent(teacherId, name, className, age);
         student = studentRepository.save(student);
         return student;
     }
 
+    @Transactional
     public Teacher createTeach(String teacherName, String className, String gender){
         Teacher teacher = createTeacher(teacherName, className, gender);
         teacher = teacherRepository.save(teacher);
         return teacher;
     }
 
+    @Transactional
     public Course createCour(String courseName, int period){
         Course course = createCourse(courseName, period);
         course = courseRepository.save(course);
@@ -67,5 +68,20 @@ public class EducationServices {
     public Teacher getRandomTeacher(){
         List<Teacher> teachers = teacherRepository.findAll();
         return teachers.get(new Random().nextInt(100));
+    }
+
+    public Student getRandomStudent(){
+        List<Student> students = studentRepository.findAll();
+        return students.get(new Random().nextInt(100));
+    }
+
+    @Transactional
+    public Student updateStudent(Student student){
+        return studentRepository.save(student);
+    }
+
+    @Transactional
+    public Teacher updateTeacher(Teacher teacher){
+        return teacherRepository.save(teacher);
     }
 }
