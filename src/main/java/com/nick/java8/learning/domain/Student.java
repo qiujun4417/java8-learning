@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by nick on 2016/12/6.
@@ -28,6 +29,11 @@ public class Student implements Serializable{
     private String className;
     @NotNull
     private int age;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "tb_student_curse", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<Course> courses;
 
     public Student(){
 

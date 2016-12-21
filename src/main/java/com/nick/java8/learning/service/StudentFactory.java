@@ -7,5 +7,5 @@ import com.nick.java8.learning.domain.Student;
  * @author nick
  */
 public interface StudentFactory {
-    Student buidStudent(String name, String className, String teacherId, int age);
+    Student buildStudent(String name, String className, String teacherId, int age);
 }

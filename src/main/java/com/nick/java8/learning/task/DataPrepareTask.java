@@ -37,7 +37,7 @@ public class DataPrepareTask implements InitializingBean{
 
     private void dataInit(){
         List<Teacher> teachers = new ArrayList<>();
-        for(int i=0; i<1000; i++){
+        for(int i=0; i<100; i++){
             Teacher teacher = new Teacher();
             teacher.setClassName("班级" + new Random().nextInt(100));
             teacher.setGender(new Random().nextInt(2)== 0 ? "male": "female");
@@ -49,7 +49,7 @@ public class DataPrepareTask implements InitializingBean{
 
         List<Teacher> teacherList = teacherRepository.findAll();
         List<Student> students = new ArrayList<>();
-        for(int i=0; i<10000; i++){
+        for(int i=0; i<1000; i++){
             Teacher teacher = teacherList.get(new Random().nextInt(100));
             Student student = new Student();
             student.setClassName(teacher.getClassName());

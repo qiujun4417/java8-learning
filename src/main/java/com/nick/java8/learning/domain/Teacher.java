@@ -30,4 +30,12 @@ public class Teacher implements Serializable {
     @JoinColumn(name = "teacher_id")
     private List<Student> students;
 
+    public Teacher(){}
+
+    public Teacher(String teacherName, String className, String gender){
+        this.teacherName = teacherName;
+        this.className = className;
+        this.gender = gender;
+    }
+
 }
