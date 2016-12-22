@@ -31,7 +31,7 @@ public class Student implements Serializable{
     private int age;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "tb_student_curse", joinColumns = @JoinColumn(name = "id"),
+    @JoinTable(name = "tb_student_course", joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
     private List<Course> courses;
 

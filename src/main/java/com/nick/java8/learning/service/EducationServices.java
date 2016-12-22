@@ -7,10 +7,13 @@ import com.nick.java8.learning.domain.Teacher;
 import com.nick.java8.learning.repository.CourseRepository;
 import com.nick.java8.learning.repository.StudentRepository;
 import com.nick.java8.learning.repository.TeacherRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -28,6 +31,28 @@ public class EducationServices {
 
     @Autowired
     private CourseRepository courseRepository;
+
+    private final Logger logger = LoggerFactory.getLogger(EducationServices.class);
+
+    public void stream(){
+        long curr = System.currentTimeMillis();
+        List<Student> students = studentRepository.findAll();
+        long count1 = students.parallelStream().filter((a)->a.getAge()>22).count();
+        long end = System.currentTimeMillis();
+        long cost = end - curr;
+        logger.info("1.8jdk: the count of student whose age over 22 year old " + count1 + " and cost " + cost + " ms");
+        students = studentRepository.findAll();
+        curr = System.currentTimeMillis();
+        List<Student> conditions = new ArrayList<>();
+        for(Student student: students){
+            if(student.getAge()>22)
+                conditions.add(student);
+        }
+        end = System.currentTimeMillis();
+        cost = end - curr;
+        logger.info("1.7jdk: the count of student whose age over 22 year old " +
+                conditions.size() + " and cost " + cost + " ms");
+    }
 
     private Student createStudent(String teacherId, String name, String className, int age){
         StudentFactory factory = Student::new;

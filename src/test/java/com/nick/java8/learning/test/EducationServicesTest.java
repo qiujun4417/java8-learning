@@ -26,6 +26,11 @@ public class EducationServicesTest {
     private EducationServices educationServices;
 
     @Test
+    public void stream(){
+        educationServices.stream();
+    }
+
+    @Test
     public void saveStudent(){
         Teacher teacher = educationServices.getRandomTeacher();
         educationServices.createStu("张三","班级15",teacher.getId(),22);
@@ -39,5 +44,11 @@ public class EducationServicesTest {
         courses.add(course);
         student.setCourses(courses);
         educationServices.updateStudent(student);
+    }
+
+    @Test
+    public void saveTeacher(){
+        Teacher teacher = educationServices.createTeach("王晓丽","高二(4)班","female");
+        System.out.println(teacher.getTeacherName());
     }
 }
