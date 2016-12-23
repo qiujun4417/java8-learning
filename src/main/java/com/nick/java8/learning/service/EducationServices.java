@@ -40,7 +40,8 @@ public class EducationServices {
         long count1 = students.parallelStream().filter((a)->a.getAge()>22).count();
         long end = System.currentTimeMillis();
         long cost = end - curr;
-        logger.info("1.8jdk: the count of student whose age over 22 year old " + count1 + " and cost " + cost + " ms");
+        logger.info("1.8jdk: the count of student whose age over 22 year old "
+                + count1 + " and cost " + cost + " ms");
         students = studentRepository.findAll();
         curr = System.currentTimeMillis();
         List<Student> conditions = new ArrayList<>();
