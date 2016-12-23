@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Created by nick on 2016/12/14.
  * @author nick
+ * 主程序开始入口
  */
 @SpringBootApplication
 public class ApplicationStartup {
