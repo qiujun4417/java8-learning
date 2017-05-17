@@ -14,8 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Created by nick on 2016/12/20.
@@ -37,6 +39,13 @@ public class EducationServices {
     public void stream(){
         long curr = System.currentTimeMillis();
         List<Student> students = studentRepository.findAll();
+//        List<Student> students1 = students.stream().filter((a) -> a.getAge() > 20 && a.getAge() < 30).
+//                sorted((c, d) -> {
+//                    if (c.getAge() > d.getAge()) return 1;
+//                    else if (c.getAge() == d.getAge()) return 0;
+//                    else return -1;
+//                }).
+//                collect(Collectors.toList());
         long count1 = students.parallelStream().filter((a)->a.getAge()>22).count();
         long end = System.currentTimeMillis();
         long cost = end - curr;
@@ -53,6 +62,7 @@ public class EducationServices {
         cost = end - curr;
         logger.info("1.7jdk: the count of student whose age over 22 year old " +
                 conditions.size() + " and cost " + cost + " ms");
+
     }
 
     private Student createStudent(String teacherId, String name, String className, int age){
