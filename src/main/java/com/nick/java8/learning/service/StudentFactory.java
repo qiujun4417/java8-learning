@@ -1,6 +1,6 @@
 package com.nick.java8.learning.service;
 
-import com.nick.java8.learning.domain.Student;
+import com.nick.java8.learning.entity.Student;
 
 /**
  * Created by nick on 2016/12/20.

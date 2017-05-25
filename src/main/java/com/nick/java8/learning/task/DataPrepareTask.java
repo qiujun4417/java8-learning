@@ -1,7 +1,7 @@
 package com.nick.java8.learning.task;
 
-import com.nick.java8.learning.domain.Student;
-import com.nick.java8.learning.domain.Teacher;
+import com.nick.java8.learning.entity.Student;
+import com.nick.java8.learning.entity.Teacher;
 import com.nick.java8.learning.repository.StudentRepository;
 import com.nick.java8.learning.repository.TeacherRepository;
 import com.nick.java8.learning.utils.IDGen;
@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.Random;
  * Created by nick on 2016/12/19.
  * @author nick
  */
-@Component
+//@Component
 public class DataPrepareTask implements InitializingBean{
 
     @Autowired

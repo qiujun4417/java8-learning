@@ -1,9 +1,8 @@
 package com.nick.java8.learning.service;
 
-import com.google.common.base.Supplier;
-import com.nick.java8.learning.domain.Course;
-import com.nick.java8.learning.domain.Student;
-import com.nick.java8.learning.domain.Teacher;
+import com.nick.java8.learning.entity.Course;
+import com.nick.java8.learning.entity.Student;
+import com.nick.java8.learning.entity.Teacher;
 import com.nick.java8.learning.repository.CourseRepository;
 import com.nick.java8.learning.repository.StudentRepository;
 import com.nick.java8.learning.repository.TeacherRepository;
@@ -14,10 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 /**
  * Created by nick on 2016/12/20.

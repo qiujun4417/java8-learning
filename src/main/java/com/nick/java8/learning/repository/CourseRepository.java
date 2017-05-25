@@ -1,6 +1,6 @@
 package com.nick.java8.learning.repository;
 
-import com.nick.java8.learning.domain.Course;
+import com.nick.java8.learning.entity.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

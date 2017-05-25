@@ -1,9 +1,9 @@
 package com.nick.java8.learning.test;
 
 import com.nick.java8.learning.ApplicationStartup;
-import com.nick.java8.learning.domain.Course;
-import com.nick.java8.learning.domain.Student;
-import com.nick.java8.learning.domain.Teacher;
+import com.nick.java8.learning.entity.Course;
+import com.nick.java8.learning.entity.Student;
+import com.nick.java8.learning.entity.Teacher;
 import com.nick.java8.learning.service.EducationServices;
 import org.junit.Test;
 import org.junit.runner.RunWith;

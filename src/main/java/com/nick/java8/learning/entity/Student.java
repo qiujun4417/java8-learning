@@ -1,4 +1,4 @@
-package com.nick.java8.learning.domain;
+package com.nick.java8.learning.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
