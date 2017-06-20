@@ -16,8 +16,15 @@ public class MyLock implements Lock {
     @Override
     public void lock() {
         if(stat.compareAndSet(0,1)){
-        }else{
-            tryLock();
+
+        }else {
+            if (!stat.compareAndSet(0, 1)) {
+//            tryLock();
+                for (;;) {
+                    if (stat.compareAndSet(0, 1))
+                        break;
+                }
+            }
         }
     }
 
@@ -44,7 +51,8 @@ public class MyLock implements Lock {
 
     @Override
     public void unlock() {
-        release(0);
+//        release(0);
+        stat.compareAndSet(1, 0);
     }
 
     @Override
