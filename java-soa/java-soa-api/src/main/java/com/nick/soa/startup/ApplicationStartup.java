@@ -2,7 +2,9 @@ package com.nick.soa.startup;
 
 import com.google.common.collect.Lists;
 import com.nick.soa.filter.APIRateLimitInterceptor;
+import com.nick.soa.filter.TimePeriodRateLimitInterceptor;
 import com.nick.soa.ratelimit.APIRateLimiter;
+import com.nick.soa.ratelimit.TimePeriodRateLimit;
 import com.nick.soa.threadpool.GoodsThreadContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -44,10 +46,12 @@ public class ApplicationStartup extends SpringBootServletInitializer {
     public RequestMappingHandlerMapping requestMappingHandlerMapping(){
         RequestMappingHandlerMapping requestMappingHandlerMapping = new RequestMappingHandlerMapping();
         List<HandlerInterceptor> interceptors = Lists.newArrayList();
-        List<String> urls = Lists.newArrayList();
-        urls.add("/api/good/get");
-        APIRateLimiter apiRateLimiter = new APIRateLimiter(urls, 100);
-        interceptors.add(new APIRateLimitInterceptor(apiRateLimiter));
+//        List<String> urls = Lists.newArrayList();
+//        urls.add("/api/good/get");
+//        APIRateLimiter apiRateLimiter = new APIRateLimiter(urls, 100);
+//        interceptors.add(new APIRateLimitInterceptor(apiRateLimiter));
+        TimePeriodRateLimit timePeriodRateLimit = new TimePeriodRateLimit(10);
+        interceptors.add(new TimePeriodRateLimitInterceptor(timePeriodRateLimit));
         requestMappingHandlerMapping.setInterceptors(interceptors.toArray());
         return requestMappingHandlerMapping;
     }

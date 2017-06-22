@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.concurrent.Callable;
+
 
 /**
  * Created by ningyang on 2017/6/20.
@@ -19,6 +19,7 @@ public class GoodController {
 
     @Autowired
     private GoodService goodService;
+
     @Autowired
     private GoodsThreadContext goodsThreadContext;
 
