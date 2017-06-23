@@ -24,6 +24,10 @@ public class GoodController {
     @Autowired
     private GoodsThreadContext goodsThreadContext;
 
+    /**
+     * 加上SoaService的注解就自动注册该服务
+     * @param request
+     */
     @GetMapping(value = "get")
     @SoaService(value = "goodsService")
     public void getGoods(HttpServletRequest request){
