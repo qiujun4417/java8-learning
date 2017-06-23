@@ -1,6 +1,7 @@
 package com.nick.soa.controller;
 
 import com.nick.soa.service.GoodService;
+import com.nick.soa.service.register.annotation.SoaService;
 import com.nick.soa.threadpool.GoodsThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ public class GoodController {
     private GoodsThreadContext goodsThreadContext;
 
     @GetMapping(value = "get")
+    @SoaService(value = "goodsService")
     public void getGoods(HttpServletRequest request){
         goodsThreadContext.submitFuture(request, () -> {
             goodService.getGoods();

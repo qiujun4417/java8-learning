@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>java-soa-api</module>
+        <module>java-soa-service-register-and-dicovery</module>
     </modules>
 
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by nick on 2017/6/22.
  */
 public class TotalRequestCountRateLimitInterceptor extends AbstractInterceptor {
+
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         return false;
