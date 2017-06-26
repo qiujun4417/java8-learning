@@ -16,7 +16,6 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.nio.CharBuffer;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by ningyang on 2017/6/26.
