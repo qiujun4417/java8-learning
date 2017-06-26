@@ -1,6 +1,5 @@
 package com.nick.soa.ratelimit;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
