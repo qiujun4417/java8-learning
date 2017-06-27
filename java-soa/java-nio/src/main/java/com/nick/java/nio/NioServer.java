@@ -33,25 +33,31 @@ public class NioServer {
             serverSocketChannel.configureBlocking(false);
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
             while(true){
-                if(selector.select(timeOut)==0){
-                    continue;
-                }
-                Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
-                while(iter.hasNext()){
-                    SelectionKey key = iter.next();
-                    if(key.isAcceptable()){
-                        handleAccept(key);
-                    }
-                    if(key.isReadable()){
-                        handleRead(key);
-                    }
-                    if(key.isWritable()){
-                        handleWrite(key);
-                    }
-                    if(key.isConnectable()){
+//                if(selector.select(timeOut)==0){
+//                    continue;
+//                }
+                SocketChannel socketChannel = serverSocketChannel.accept();
+                if(socketChannel!=null){
+                    socketChannel.register(selector, SelectionKey.OP_ACCEPT);
+                    if(selector.select(timeOut)==0)
+                        continue;
+                    Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
+                    while(iter.hasNext()){
+                        SelectionKey key = iter.next();
+                        if(key.isAcceptable()){
+                            handleAccept(key);
+                        }
+                        if(key.isReadable()){
+                            handleRead(key);
+                        }
+                        if(key.isWritable()){
+                            handleWrite(key);
+                        }
+                        if(key.isConnectable()){
 
+                        }
+                        iter.remove();
                     }
-                    iter.remove();
                 }
             }
         }finally {
@@ -95,6 +101,11 @@ public class NioServer {
             socketChannel.write(buf);
         }
         buf.compact();
+    }
+
+    public static void main(String[] args) throws IOException {
+        NioServer server = new NioServer(8088, 3000);
+        server.openServer();
     }
 }
 
