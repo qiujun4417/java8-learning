@@ -155,7 +155,7 @@ public class SearchService<T> {
                 }
             }
             result = newResult;
-            return true;
+            return flag;
         }
 
         public Collection<T> limit(int limit){
